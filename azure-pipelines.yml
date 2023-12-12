@@ -1,0 +1,18 @@
+jobs:
+- job: e2e_tests
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      # Replace '20.10' with the latest Node.js LTS version
+      versionSpec: '20.10'
+    displayName: 'Install Node.js'
+  - script: npm install
+    displayName: 'Install TestCafe'
+  - script: npm test
+    displayName: 'Run TestCafe Tests'
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/report.xml'
+      testResultsFormat: 'JUnit'

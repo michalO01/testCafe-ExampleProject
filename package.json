@@ -2,5 +2,8 @@
   "devDependencies": {
     "testcafe": "^3.4.0",
     "testcafe-reporter-xunit": "^2.2.3"
+  },
+  "scripts": {
+    "test": "testcafe chrome:headless tests/**/* --reporter spec,xunit:report.xml"
   }
 }
