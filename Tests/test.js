@@ -1,18 +1,21 @@
 import pageObject from "../PageObjects/pageObject";
-import finalPageObject from "../PageObjects/secondPageObject";
+import secondPageObject from "../PageObjects/secondPageObject";
 import API from "../API/API";
 const { Selector } = require("testcafe");
 
-fixture("Getting Started").page("./").beforeEach(async t => {
-  console.log("Action that are executed before each test");
-}).afterEach(async t => {
-  console.log("After each test action is performed");
-});
+fixture("Getting Started")
+  .page("./")
+  .beforeEach(async (t) => {
+    console.log("Action that are executed before each test");
+  })
+  .afterEach(async (t) => {
+    console.log("After each test action is performed");
+  });
 
 test("Example test", async (t) => {
   const userName = "Test user";
   var fieldName = await Selector(`label[for='remote-testing']`).textContent; //using locator directly in test to get text from element. (example only, page objects recomended)
-  await t.expect(fieldName).eql("Support for testing on remote devices");    // assertion of string value
+  await t.expect(fieldName).eql("Support for testing on remote devices"); // assertion of string value
 
   await pageObject.setName(userName); // set text
   await pageObject.clickRemoteTestingCheckbox();
@@ -27,7 +30,7 @@ test("Example test", async (t) => {
   await pageObject.chooseInterface("Command Line"); // dropdown
   await pageObject.clickSubmitButton();
 
-  var message = await finalPageObject.getHeader();
+  var message = await secondPageObject.getHeader();
   await t.expect(message).eql(`Thank you, ${userName}!`);
 });
 
@@ -48,7 +51,5 @@ test("Check list", async (t) => {
   ];
 
   var actualFeatures = await pageObject.getFeaturesName(); //Iterate through element list
-
-  console.log(actualFeatures);
   await t.expect(expectedFeatures).eql(actualFeatures); // compare two arrays
 });

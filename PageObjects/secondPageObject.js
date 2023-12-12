@@ -1,6 +1,6 @@
 import { Selector } from "testcafe";
 
-class FinalPageObject {
+class SecondPageObject {
   constructor() {
     this.thankYouMessage = Selector("#article-header");
   }
@@ -11,4 +11,4 @@ class FinalPageObject {
 
 }
 
-export default new FinalPageObject();
+export default new SecondPageObject();

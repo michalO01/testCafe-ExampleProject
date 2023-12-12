@@ -21,6 +21,9 @@ class PageObject {
     this.interfaces = Selector("#preferred-interface");
     this.submitButton = Selector("#submit-button");
     this.thankYouMessage = Selector("article-header");
+    this.featureCheckboxes = Selector(
+      'p > label:has(input[type = "checkbox"])'
+    );
   }
 
   //text input
@@ -76,62 +79,18 @@ class PageObject {
 
   //Iterate through element list
   async getFeaturesName() {
-    var elements = await Selector('p > label:has(input[type = "checkbox"])');
+    var elements = await this.featureCheckboxes;
     var elementsNumber = await elements.count;
 
     var fieldsName = [];
     for (let i = 0; i < elementsNumber; i++) {
-      var element =  elements.nth(i);
+      var element = elements.nth(i);
 
-      console.log(await element.textContent)
       fieldsName[i] = await element.textContent;
     }
 
     return fieldsName;
   }
-
-
-  // async getFeaturesNameFalsePositive() {
-  //   var elements = await Selector('p > label:has(input[type = "checkbox"])');
-  //   var elementsNumber = await elements.count;
-
-  //   var fieldsName = [];
-  //   for (let i = 0; i < elementsNumber; i++) {
-  //     var element =  elements.nth(i);
-
-  //     console.log(await element.textContent)
-  //     fieldsName[i] = await element.textContent;
-  //   }
-
-  //   return fieldsName;
-  // }
 }
 
 export default new PageObject();
-
-export async function getFeaturesName() {
-  var elements = await Selector('p > label:has(input[type = "checkbox"])');
-  //  var element2 = await Selector(`label[for='remote-testing']`).textContent
-  var elementsNumber = await elements.count;
-
-  //  console.log(element2)
-
-  var element;
-
-  await t.click(elements.nth(1));
-
-  console.log(element.count);
-  console.log(await element.textContent);
-
-  var fieldsName = [];
-  for (let i = 0; i < elementsNumber; i++) {
-    var element = await elements.nth(i);
-    var selector = await element();
-    console.log(await selector.textContent);
-    console.log(selector.innerText);
-    fieldsName[i] = await element.textContent;
-  }
-
-  console.log(fieldsName);
-  return fieldsName;
-}
