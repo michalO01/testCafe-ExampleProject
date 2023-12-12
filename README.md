@@ -14,6 +14,8 @@ npm - package manager (curl -qL https://www.npmjs.com/install.sh | sh)
 
 # Configuraton
     Configuration is stored in ".testcaferc.cjs" file
+
+    
     >     src: "./Tests", // Path to test files
     >     browsers: ["chrome"], // Browsers 
     >     baseUrl: "https://devexpress.github.io/testcafe/example", // Application URL
@@ -21,8 +23,10 @@ npm - package manager (curl -qL https://www.npmjs.com/install.sh | sh)
     >     hostname: os.hostname(), // Node.js dynamically calculates the value of this parameter.
     >     concurrency: 1    // number of concurency users
 
+
     skipJsErrors is by default 'true' and this could cause false positive outcom, recomend to set it to 'false'
    [Confguration guides](https://testcafe.io/documentation/402638/reference/configuration-file)
 
 # Useful test-cafe code examples
+    Test cafe GitHub repository with helpful framework usage examples
    [Example repo](https://github.com/DevExpress/testcafe-examples/tree/master/examples)
